@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Countries msg="Listing by Danielle Platt @party-ring"/>
+    <Countries msg="Listing Countries by Danielle Platt @party-ring"/>
   </div>
 </template>
 
