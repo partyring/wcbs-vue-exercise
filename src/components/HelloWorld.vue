@@ -11,8 +11,22 @@
       </thead>
       <tbody>
         <tr v-for="(country, index) in myCountries" :key="country.code">
-          <td>{{ country.name }}</td>
+
+          <div v-if="index === currentlyBeingEdited">
+            <td><textarea v-model="country.name"></textarea></td>
+          </div>
+          <div v-else>
+            <td>{{ country.name }}</td>
+          </div>
+                    
+           
           <td>{{ country.code }}</td>
+          <td v-if="index === currentlyBeingEdited">
+            <button @click="saveCountry(index, country.name, country.code)">Save Country</button>   
+          </td>
+          <td v-else>
+            <button @click="editCountry(index)">Edit Country</button> 
+          </td>
           <td><button @click="removeCountry(index)">Remove Country</button></td>
         </tr>
       </tbody>
@@ -22,6 +36,7 @@
 
 <script>
 import countries from './countries.json';
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -31,13 +46,22 @@ export default {
     removeCountry: function(index) {
       // Remove country from UI list
       this.$delete(this.myCountries, index)
-      // TODO: Remove from JSON data
+    },
+    editCountry: function(index) {
+      this.currentlyBeingEdited = index;
+    },
+    saveCountry: function(index, name, code) {
+      this.$set(this.myCountries, index, {'code': code,'name': name})
 
+      this.currentlyBeingEdited = {}
     }
   },
-  data(){
+  data(){ 
     return {
-        myCountries: countries
+        myCountries: countries,
+        currentlyBeingEdited: {
+
+        }
     }
   }
 
