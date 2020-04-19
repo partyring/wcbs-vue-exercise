@@ -10,9 +10,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="country in myCountries" :key="country.code">
+        <tr v-for="(country, index) in myCountries" :key="country.code">
           <td>{{ country.name }}</td>
           <td>{{ country.code }}</td>
+          <td><button @click="removeCountry(index)">Remove Country</button></td>
         </tr>
       </tbody>
     </table>
@@ -26,11 +27,20 @@ export default {
   props: {
     msg: String,
   },
+  methods: {
+    removeCountry: function(index) {
+      // Remove country from UI list
+      this.myCountries.splice(index, 1);
+      // TODO: Remove from JSON data
+
+    }
+  },
   data(){
     return {
         myCountries: countries
     }
   }
+
 }
 </script>
 
