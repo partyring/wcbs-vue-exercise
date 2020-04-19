@@ -30,7 +30,7 @@ export default {
   methods: {
     removeCountry: function(index) {
       // Remove country from UI list
-      this.myCountries.splice(index, 1);
+      this.$delete(this.myCountries, index)
       // TODO: Remove from JSON data
 
     }
