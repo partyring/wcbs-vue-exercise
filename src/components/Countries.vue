@@ -12,22 +12,19 @@
       <tbody>
         <tr v-for="(country, index) in myCountries" :key="country.code">
 
-          <div v-if="index === currentlyBeingEdited">
-            <td><textarea v-model="country.name"></textarea></td>
-          </div>
-          <div v-else>
-            <td>{{ country.name }}</td>
-          </div>
-                    
-           
-          <td>{{ country.code }}</td>
-          <td v-if="index === currentlyBeingEdited">
-            <button @click="saveCountry(index, country.name, country.code)">Save Country</button>   
-          </td>
-          <td v-else>
-            <button @click="editCountry(index)">Edit Country</button> 
-          </td>
+        <template v-if="index === currentlyBeingEdited">
+          <td><textarea v-model="country.name"></textarea></td>
+          <td><textarea v-model="country.code"></textarea></td>
+          <button @click="saveCountry(index, country.name, country.code)">Save Country</button>
           <td><button @click="removeCountry(index)">Remove Country</button></td>
+        </template>
+        <template v-else>
+          <td>{{ country.name }}</td>
+          <td>{{ country.code }}</td>
+          <td><button @click="editCountry(index)">Edit Country</button></td>
+          <td><button @click="removeCountry(index)">Remove Country</button></td>
+        </template>
+
         </tr>
       </tbody>
     </table>
@@ -35,10 +32,10 @@
 </template>
 
 <script>
-import countries from './countries.json';
+import countries from '../files/countries.json';
 
 export default {
-  name: 'HelloWorld',
+  name: 'Countries',
   props: {
     msg: String,
   },

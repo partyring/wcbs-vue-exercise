@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Countries Listing"/>
+    <Countries msg="Listing by Danielle Platt @party-ring"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Countries from './components/Countries.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Countries
   }
 }
 </script>
